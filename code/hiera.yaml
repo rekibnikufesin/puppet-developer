@@ -4,6 +4,7 @@
 :hierarchy:
   - "nodes/%{::trusted.certname}"
   - common
+  # Hello world
 
 :yaml:
 # datadir is empty here, so hiera uses its defaults:
