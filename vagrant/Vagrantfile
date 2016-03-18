@@ -13,15 +13,23 @@ Vagrant.configure(2) do |config|
       v.memory = 2048
     end
     puppet.vm.synced_folder ".", "/vagrant"
+    puppet.vm.synced_folder "../code", "/puppet_code"
+    puppet.vm.synced_folder "../puppetserver", "/puppet_puppetserver"
     puppet.vm.box = "boxcutter/centos72"
     puppet.vm.hostname = "puppet.example.com"
     puppet.vm.network :private_network, ip: "10.0.20.10"
     puppet.hostmanager.aliases = %w(puppet)
     puppet.vm.provision "shell", inline: <<-SHELL
-      sudo yum update -y
+      # sudo yum update -y
       sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
       sudo yum install puppetserver -y
+      sudo rm -rf /etc/puppetlabs/code
+      sudo ln -s /puppet_code /etc/puppetlabs/code
+      sudo rm -rf /etc/puppetlabs/puppetserver
+      sudo ln -s /puppet_puppetserver /etc/puppetlabs/puppetserver
       sudo sed -i 's/2g/512m/g' /etc/sysconfig/puppetserver
+      echo "*.example.com" | sudo tee /etc/puppetlabs/puppet/autosign.conf
+      sudo service puppetserver start
     SHELL
   end
 
@@ -31,6 +39,12 @@ Vagrant.configure(2) do |config|
     agent1.vm.hostname = "agent1.example.com"
     agent1.vm.network :private_network, ip: "10.0.20.11"
     agent1.hostmanager.aliases = %w(agent1)
+    agent1.vm.provision "shell", inline: <<-SHELL
+      sudo yum update -y
+      sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+      sudo yum install puppet-agent -y
+      sudo service puppet start
+    SHELL
   end
 
   config.vm.define "agent2" do |agent2|
@@ -39,5 +53,22 @@ Vagrant.configure(2) do |config|
     agent2.vm.hostname = "agent2.example.com"
     agent2.vm.network :private_network, ip: "10.0.20.12"
     agent2.hostmanager.aliases = %w(agent2)
+    agent2.vm.provision "shell", inline: <<-SHELL
+      wget https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
+      sudo dpkg -i puppetlabs-release-pc1-jessie.deb
+      sudo apt-get update
+      sudo apt-get install puppet-agent -y
+      sudo /opt/puppetlabs/bin/puppet agent --enable
+      sudo service puppet start
+    SHELL
+  end
+
+  config.vm.define "agent3" do |agent3|
+    # Puppet agent on Windows 2012
+    agent3.vm.box = "devopsguys/Windows2012R2Eval"
+    agent3.vm.hostname = "agent3"
+    agent3.vm.network :private_network, ip: "10.0.20.13"
+    agent3.hostmanager.aliases = %w(agent3)
+    agent3.vm.provision "shell", :path => "windows.ps1"
   end
 end
