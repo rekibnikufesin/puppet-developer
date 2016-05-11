@@ -1,5 +1,7 @@
-class helloworld {
-  notify{ 'helloworld':
-    message => "Hello ${::hostname}!",
+# Helloworld class
+class helloworld
+  ( $server = 'Unknown'){
+  notify { 'Say hello':
+    message => "Hello from ${server}",
   }
 }

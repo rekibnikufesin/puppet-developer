@@ -29,6 +29,10 @@ Vagrant.configure(2) do |config|
       sudo ln -s /puppet_puppetserver /etc/puppetlabs/puppetserver
       sudo sed -i 's/2g/512m/g' /etc/sysconfig/puppetserver
       echo "*.example.com" | sudo tee /etc/puppetlabs/puppet/autosign.conf
+      sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml
+      sudo cp -r /vagrant/keys /etc/puppetlabs
+      sudo chown puppet:puppet /etc/puppetlabs/keys/private_key.pkcs7.pem
+      sudo chown puppet:puppet /etc/puppetlabs/keys/public_key.pkcs7.pem
       sudo service puppetserver start
     SHELL
   end

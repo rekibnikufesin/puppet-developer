@@ -1,4 +1,0 @@
----
-  classes:
-    - hellolinux
-  hellolinux::server: "linux"

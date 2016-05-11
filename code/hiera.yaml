@@ -2,9 +2,10 @@
 :backends:
   - eyaml
   - yaml
+  - json
 :hierarchy:
-  - "nodes/%{::hostname}"
-  - "os/%{::kernel}"
+  - nodes/%{::hostname}
+  - os/%{::kernel}
   - common
 
 :eyaml:
