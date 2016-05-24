@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>meinberg-ntp</id>
+    <title>Meinberg NTP</title>
+    <version>4.2.8</version>
+    <authors>willbutton</authors>
+    <owners>MEINBERG RADIO CLOCKS GmbH Co. KG</owners>
+    <summary>NTP service for Windows</summary>
+    <description>This package installs and configures the NTP service using the silent installation.
+    </description>
+    <projectUrl>http://www.meinbergglobal.com/english/sw/ntp.htm</projectUrl>
+    <tags>ntp meingberg</tags>
+    <copyright>Copyright (c) Meinberg Funkuhren 2005</copyright>
+    <licenseUrl>https://www.meinbergglobal.com/english/sw/readme-ntpinstaller.htm#ua_configuration</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
