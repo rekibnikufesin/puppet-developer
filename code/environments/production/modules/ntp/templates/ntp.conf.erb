@@ -1,0 +1,18 @@
+# Managed by puppet
+
+driftfile /var/lib/ntp/drift
+
+restrict default nomodify notrap nopeer noquery
+
+restrict 127.0.0.1
+restrict ::1
+
+<% [@servers].flatten.each do |server| -%>
+server <%= server %> iburst
+<% end -%>
+
+includefile /etc/ntp/crypto/pw
+
+keys /etc/ntp/keys
+
+disable monitor

@@ -1,0 +1,76 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.2.8)
+    ast (2.2.0)
+    diff-lcs (1.2.5)
+    facter (2.4.6)
+      CFPropertyList (~> 2.2.6)
+    hiera (3.2.0)
+      json_pure
+    json (1.8.3)
+    json_pure (1.8.3)
+    metaclass (0.0.4)
+    metadata-json-lint (0.0.11)
+      json
+      spdx-licenses (~> 1.0)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
+    parser (2.3.1.0)
+      ast (~> 2.2)
+    powerpack (0.1.1)
+    puppet (4.5.0)
+      CFPropertyList (~> 2.2.6)
+      facter (> 2.0, < 4)
+      hiera (>= 2.0, < 4)
+      json_pure
+    puppet-lint (1.1.0)
+    puppet-syntax (2.1.0)
+      rake
+    puppetlabs_spec_helper (1.1.1)
+      mocha
+      puppet-lint
+      puppet-syntax
+      rake
+      rspec-puppet
+    rainbow (2.1.0)
+    rake (11.1.2)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.4)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-puppet (2.4.0)
+      rspec
+    rspec-support (3.4.1)
+    rubocop (0.40.0)
+      parser (>= 2.3.1.0, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-progressbar (1.8.1)
+    spdx-licenses (1.1.0)
+    unicode-display_width (1.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  facter (>= 1.7.0)
+  metadata-json-lint
+  puppet (>= 3.3)
+  puppet-lint (>= 1.0.0)
+  puppetlabs_spec_helper (>= 1.0.0)
+  rspec-puppet
+  rubocop
+
+BUNDLED WITH
+   1.11.2
